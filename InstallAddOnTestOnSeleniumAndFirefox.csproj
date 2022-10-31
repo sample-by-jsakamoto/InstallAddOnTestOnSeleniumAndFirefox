@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Selenium.WebDriver" Version="4.5.1" />
+    <PackageReference Include="Selenium.WebDriver.GeckoDriver" Version="0.32.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Browser Extensions\**\*" />
+    <None Remove="Browser Extensions\**\*" />
+    <None Include="Browser Extensions\**\*" />
+  </ItemGroup>
+
+  <Target Name="BuildXpi" AfterTargets="Build">
+    <ZipDirectory SourceDirectory="Browser Extensions\borderify" DestinationFile="$(OutDir)borderify.xpi" Overwrite="true" />
+  </Target>
+  
+</Project>
